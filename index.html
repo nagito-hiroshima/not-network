@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>このネットネットワークからはアクセスできません。</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        text-align: center;
+        padding: 50px;
+    }
+    h1 {
+        color: #d9534f;
+    }
+    p {
+        font-size: 18px;
+    }
+    a {
+        color: #337ab7;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 80%;
+        max-width: 700px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    td {
+        background-color: #fff;
+    }
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+<body>
+    <img src="https://oecuevent.group/wp-content/uploads/2024/09/c36c6e7164320595a7b13aa96c23c67b.png" alt="Logo" style="width: 550px; height: auto; margin-bottom: 20px;">
+    <h1>このネットワークからはアクセスできません。</h1>
+    <p>外部ネットワークから大学祭ネットワークにはアクセスできません。</p>
+    <p>大学祭ネットワークにアクセスする必要がある場合は、大学祭本部のネットワーク(Wi-Fi)に接続してください。</p>
+
+    <p><a href="javascript:history.back()">前のページに戻る</a></p>
+    <!--端末情報・ネットワーク情報を表にして表示-->
+    <table>
+        <tr>
+            <th></th>
+            <th>詳細</th>
+        </tr>
+        <tr>
+            <td>ブラウザ情報</td>
+            <td><span id="browser-info"></span></td>
+        </tr>
+        <tr>
+            <td>OS情報</td>
+            <td><span id="os-info"></span></td>
+        </tr>
+        <tr>
+            <td>IPアドレス</td>
+            <td><span id="ip-address"></span></td>
+        </tr>
+        <tr>
+            <td>接続時間</td>
+            <td><span id="connection-time"></span></td>
+        </tr>
+        <tr>
+            <td>接続時間帯</td>
+            <td><span id="connection-timezone"></span></td>
+        </tr>
+            <td>端末情報</td>
+            <td><span id="device-info"></span></td>
+        </tr>
+        <tr>
+            <td>ネットワーク情報</td>
+            <td><span id="network-info"></span></td>
+        </tr>
+    </table>
+    <script>
+        // 端末情報を取得
+        const deviceInfo = `User Agent: ${navigator.userAgent}`;
+        document.getElementById('device-info').textContent = deviceInfo;
+        // ネットワーク情報を取得
+        const networkInfo = `Connection Type: ${navigator.connection ? navigator.connection.effectiveType : 'unknown'}`;
+        document.getElementById('network-info').textContent = networkInfo;
+        // ブラウザ情報を取得
+        const browserInfo = navigator.userAgent;
+        document.getElementById('browser-info').textContent = browserInfo;
+        // OS情報を取得
+        const osInfo = navigator.platform;
+        document.getElementById('os-info').textContent = osInfo;
+        // IPアドレスを取得
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip-address').textContent = data.ip;
+            })
+            .catch(error => {
+                document.getElementById('ip-address').textContent = '取得失敗';
+            });
+        // 接続時間を取得
+        const connectionTime = new Date().toLocaleString();
+        document.getElementById('connection-time').textContent = connectionTime;
+        // 接続時間帯を取得
+        const connectionTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.getElementById('connection-timezone').textContent = connectionTimezone;
+        // 端末情報とネットワーク情報を表示
+        document.getElementById('device-info').textContent = deviceInfo;
+        document.getElementById('network-info').textContent = networkInfo;
+        // IPアドレスを表示
+        document.getElementById('ip-address').textContent = '取得中...';
+        // 接続時間を表示
+        document.getElementById('connection-time').textContent = connectionTime;
+        // 接続時間帯を表示
+        document.getElementById('connection-timezone').textContent = connectionTimezone;
+        // ブラウザ情報を表示
+        document.getElementById('browser-info').textContent = browserInfo;
+        // OS情報を表示
+        document.getElementById('os-info').textContent = osInfo;
+        // 端末情報とネットワーク情報を表示
+        document.getElementById('device-info').textContent = deviceInfo;
+        document.getElementById('network-info').textContent = networkInfo;          
+    </script>
+</body>
+</html>
